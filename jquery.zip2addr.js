@@ -37,7 +37,7 @@ $.fn.zip2addr = function(options){
 	
 	var getAddr = function(zip, callback){
 		if (location.protocol == 'https:') {
-			c.api = c.api.match(/http:/, 'https:');
+			c.api = c.api.replace(/http:/, 'https:');
 		}
 		$.getJSON(c.api, {'text':zip}, function(json){
 			if (RegExp(c.prefectureToken).test(json[0][1][0])) {
