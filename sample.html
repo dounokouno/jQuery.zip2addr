@@ -1,10 +1,10 @@
-<!doctype html>
-<html lang="ja">
-<head>
+<!DOCTYPE html>
+<html lang="ja"><head>
+<meta http-equiv="content-type" content="text/html; charset=UTF-8">
 <meta charset="utf-8">
 <title>get jp postal code</title>
-<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.4/jquery.min.js"></script>
-<script type="text/javascript" src="jquery.zip2addr.js"></script>
+<script type="text/javascript" src="sample_files/jquery_002.js"></script>
+<script type="text/javascript" src="sample_files/jquery.js"></script>
 <style>
 h2 {
 	font-size: 130%;
@@ -30,26 +30,28 @@ pre {
 
 <h2>jQueryとzip2addrの読み込み</h2>
 <p>下記のようにjQueryとzip2addrを読み込んでおきます。これで準備は完了。</p>
-<pre>
-&lt;script type=&quot;text/javascript&quot; src=&quot;http://ajax.googleapis.com/ajax/libs/jquery/1.4/jquery.min.js&quot;&gt;&lt;/script&gt;
-&lt;script type=&quot;text/javascript&quot; src=&quot;jquery.zip2addr.js&quot;&gt;&lt;/script&gt;
+<pre>&lt;script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.4/jquery.min.js"&gt;&lt;/script&gt;
+&lt;script type="text/javascript" src="jquery.zip2addr.js"&gt;&lt;/script&gt;
 </pre>
 
 <h2>シンプルなケース</h2>	
 <dl>
 <dt>郵便番号</dt>
-<dd><input type="text" name="" id="zip" size="8"/></dd>
+<dd><input name="" id="zip" size="8" type="text"></dd>
 <dt>住所</dt>
-<dd><input type="text" name="" id="addr" size="40" /></dd>
+<dd><input name="" id="addr" size="40" type="text"></dd>
 </dl>
 
-<pre>
-$('#zip').zip2addr('#addr')
+<pre>$('#zip').zip2addr({
+	addr:'#addr'
+});
 </pre>
 
 
 <script>
-$('#zip').zip2addr('#addr')
+$('#zip').zip2addr({
+	addr:'#addr'
+});
 </script>
 
 
@@ -57,16 +59,15 @@ $('#zip').zip2addr('#addr')
 
 <dl>
 <dt>郵便番号</dt>
-<dd><input type="text" name="" id="zip2" size="8"/></dd>
+<dd><input name="" id="zip2" size="8" type="text"></dd>
 <dt>住所</dt>
 <dd>
-	<input type="text" name="" id="pref2" size="5" />
-	<input type="text" name="" id="addr2" size="34" />
+	<input name="" id="pref2" size="5" type="text">
+	<input name="" id="addr2" size="34" type="text">
 </dd>
 </dl>
 
-<pre>
-$('#zip2').zip2addr({
+<pre>$('#zip2').zip2addr({
 	pref:'#pref2',
 	addr:'#addr2'
 })
@@ -84,11 +85,11 @@ $('#zip2').zip2addr({
 
 <dl>
 <dt>郵便番号</dt>
-<dd><input type="text" name="" id="zip3" size="8"/></dd>
+<dd><input name="" id="zip3" size="8" type="text"></dd>
 <dt>住所</dt>
 <dd>
 	<select name="pref" id="pref3">
-	<option></option>
+	<option selected="selected"></option>
 	<option>北海道</option>
 	<option>青森県</option>
 	<option>岩手県</option>
@@ -137,12 +138,11 @@ $('#zip2').zip2addr({
 	<option>鹿児島県</option>
 	<option>沖縄県</option>
 	</select>
-	<input type="text" name="" id="addr3" size="34" />
+	<input name="" id="addr3" size="34" type="text">
 </dd>
 </dl>
 
-<pre>
-$('#zip3').zip2addr({
+<pre>$('#zip3').zip2addr({
 	pref:'#pref3',
 	addr:'#addr3'
 })
@@ -159,13 +159,12 @@ $('#zip3').zip2addr({
 
 <dl>
 <dt>郵便番号</dt>
-<dd><input type="text" name="" id="zip4-1" size="3"/> - <input type="text" name="" id="zip4-2" size="4"/></dd>
+<dd><input name="" id="zip4-1" size="3" type="text"> - <input name="" id="zip4-2" size="4" type="text"></dd>
 <dt>住所</dt>
-<dd><input type="text" name="" id="addr4" size="40" /></dd>
+<dd><input name="" id="addr4" size="40" type="text"></dd>
 </dl>
 
-<pre>
-$('#zip4-1').zip2addr({
+<pre>$('#zip4-1').zip2addr({
 	zip2:'#zip4-2',
 	addr:'#addr4'
 })
@@ -182,16 +181,15 @@ $('#zip4-1').zip2addr({
 
 <dl>
 <dt>郵便番号</dt>
-<dd><input type="text" name="" id="zip5-1" size="3"/> - <input type="text" name="" id="zip5-2" size="4"/></dd>
+<dd><input name="" id="zip5-1" size="3" type="text"> - <input name="" id="zip5-2" size="4" type="text"></dd>
 <dt>住所</dt>
 <dd>
-	<input type="text" name="" id="pref5" size="5" />
-	<input type="text" name="" id="addr5" size="34" />
+	<input name="" id="pref5" size="5" type="text">
+	<input name="" id="addr5" size="34" type="text">
 </dd>
 </dl>
 
-<pre>
-$('#zip5-1').zip2addr({
+<pre>$('#zip5-1').zip2addr({
 	zip2:'#zip5-2',
 	pref:'#pref5',
 	addr:'#addr5'
@@ -206,6 +204,195 @@ $('#zip5-1').zip2addr({
 })
 </script>
 
+<h2>シンプルなケース（ボタンクリック）</h2>	
+<dl>
+<dt>郵便番号</dt>
+<dd><input name="" id="zip6" size="8" type="text"> <input name="" value="郵便番号から住所を入力" id="btn6" type="button"></dd>
+<dt>住所</dt>
+<dd><input name="" id="addr6" size="40" type="text"></dd>
+</dl>
 
-</body>
-</html>
+<pre>$('#zip6').zip2addr({
+	addr:'#addr6',
+	event:'click',
+	btn:'#btn6'
+});
+</pre>
+
+
+<script>
+$('#zip6').zip2addr({
+	addr:'#addr6',
+	event:'click',
+	btn:'#btn6'
+});
+</script>
+
+
+<h2>都道府県が別フィールドの場合（ボタンクリック）</h2>
+
+<dl>
+<dt>郵便番号</dt>
+<dd><input name="" id="zip7" size="8" type="text"> <input name="" value="郵便番号から住所を入力" id="btn7" type="button"></dd>
+<dt>住所</dt>
+<dd>
+	<input name="" id="pref7" size="5" type="text">
+	<input name="" id="addr7" size="34" type="text">
+</dd>
+</dl>
+
+<pre>$('#zip7').zip2addr({
+	pref:'#pref7',
+	addr:'#addr7',
+	event:'click',
+	btn:'#btn7'
+})
+</pre>
+
+<script>
+$('#zip7').zip2addr({
+	pref:'#pref7',
+	addr:'#addr7',
+	event:'click',
+	btn:'#btn7'
+})
+</script>
+
+
+<h2>都道府県がselect要素の場合（ボタンクリック）</h2>
+
+<dl>
+<dt>郵便番号</dt>
+<dd><input name="" id="zip8" size="8" type="text"> <input name="" value="郵便番号から住所を入力" id="btn8" type="button"></dd>
+<dt>住所</dt>
+<dd>
+	<select name="pref" id="pref8">
+	<option selected="selected"></option>
+	<option>北海道</option>
+	<option>青森県</option>
+	<option>岩手県</option>
+	<option>宮城県</option>
+	<option>秋田県</option>
+	<option>山形県</option>
+	<option>福島県</option>
+	<option>茨城県</option>
+	<option>栃木県</option>
+	<option>群馬県</option>
+	<option>埼玉県</option>
+	<option>千葉県</option>
+	<option>東京都</option>
+	<option>神奈川県</option>
+	<option>新潟県</option>
+	<option>富山県</option>
+	<option>石川県</option>
+	<option>福井県</option>
+	<option>山梨県</option>
+	<option>長野県</option>
+	<option>岐阜県</option>
+	<option>静岡県</option>
+	<option>愛知県</option>
+	<option>三重県</option>
+	<option>滋賀県</option>
+	<option>京都府</option>
+	<option>大阪府</option>
+	<option>兵庫県</option>
+	<option>奈良県</option>
+	<option>和歌山県</option>
+	<option>鳥取県</option>
+	<option>島根県</option>
+	<option>岡山県</option>
+	<option>広島県</option>
+	<option>山口県</option>
+	<option>徳島県</option>
+	<option>香川県</option>
+	<option>愛媛県</option>
+	<option>高知県</option>
+	<option>福岡県</option>
+	<option>佐賀県</option>
+	<option>長崎県</option>
+	<option>熊本県</option>
+	<option>大分県</option>
+	<option>宮崎県</option>
+	<option>鹿児島県</option>
+	<option>沖縄県</option>
+	</select>
+	<input name="" id="addr8" size="34" type="text">
+</dd>
+</dl>
+
+<pre>$('#zip8').zip2addr({
+	pref:'#pref8',
+	addr:'#addr8',
+	event:'click',
+	btn:'#btn8'
+})
+</pre>
+
+<script>
+$('#zip8').zip2addr({
+	pref:'#pref8',
+	addr:'#addr8',
+	event:'click',
+	btn:'#btn8'
+})
+</script>
+
+<h2>郵便番号フィールドが別れている場合（ボタンクリック）</h2>
+
+<dl>
+<dt>郵便番号</dt>
+<dd><input name="" id="zip9-1" size="3" type="text"> - <input name="" id="zip9-2" size="4" type="text"> <input name="" value="郵便番号から住所を入力" id="btn9" type="button"></dd>
+<dt>住所</dt>
+<dd><input name="" id="addr9" size="40" type="text"></dd>
+</dl>
+
+<pre>$('#zip9-1').zip2addr({
+	zip2:'#zip9-2',
+	addr:'#addr9',
+	event:'click',
+	btn:'#btn9'
+})
+</pre>
+
+<script>
+$('#zip9-1').zip2addr({
+	zip2:'#zip9-2',
+	addr:'#addr9',
+	event:'click',
+	btn:'#btn9'
+})
+</script>
+
+<h2>郵便番号フィールドも住所フィールドも別れている場合（ボタンクリック）</h2>
+
+<dl>
+<dt>郵便番号</dt>
+<dd><input value="453" name="" id="zip10-1" size="3" type="text"> - <input value="0834" name="" id="zip10-2" size="4" type="text"> <input name="" value="郵便番号から住所を入力" id="btn10" type="button"></dd>
+<dt>住所</dt>
+<dd>
+	<input value="愛知県" name="" id="pref10" size="5" type="text">
+	<input value="名古屋市中村区豊国通" name="" id="addr10" size="34" type="text">
+</dd>
+</dl>
+
+<pre>$('#zip10-1').zip2addr({
+	zip2:'#zip10-2',
+	pref:'#pref10',
+	addr:'#addr10',
+	event:'click',
+	btn:'#btn10'
+})
+</pre>
+
+<script>
+$('#zip10-1').zip2addr({
+	zip2:'#zip10-2',
+	pref:'#pref10',
+	addr:'#addr10',
+	event:'click',
+	btn:'#btn10'
+})
+</script>
+
+
+</body></html>
