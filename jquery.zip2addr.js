@@ -29,7 +29,6 @@ $.fn.zip2addr = function(options){
 		zip2: null,
 		pref: null,
 		addr: null,
-		event: 'change',
 		btn: null
 	}, options);
 	
@@ -98,7 +97,7 @@ $.fn.zip2addr = function(options){
 	
 	this.each(function(){
 		var elem = $(this);
-		if (c.event == 'click') {
+		if (c.btn) {
 			if (c.zip2) {
 				$(c.btn).click(function(){
 					check(elem.val()+''+$(c.zip2).val());
